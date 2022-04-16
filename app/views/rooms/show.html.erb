@@ -1,0 +1,62 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= attachment_image_tag @room, :room_image, fallback: "no-image.png" %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><%= @room.room_name %></p>
+              </div>
+            </div>
+            <div class="content">
+              <table class="table is-narrow">
+                <tr>
+                  <th>お部屋紹介</th>
+                </tr>
+                <tr>
+                  <td><%= simple_format @room.room_body %></td>
+                </tr>
+                <tr>
+                  <td>住所：<%=@room.address %></td>
+                </tr>
+              </table>
+              <%= link_to "一覧ページへ戻る", rooms_path, class: "button is-success" %>
+              <% if user_signed_in? %>
+                <%= link_to "投稿者情報を確認", user_path(@room.user),class: "button is-success" %>
+                  <% if current_user.already_favorited?(@room) %>
+                    <%= button_to room_favorites_path(@room), method: :delete do %>
+                      <i class="fas fa-heart"></i>
+                    <% end %>
+                  <% else %>
+                    <%= button_to room_favorites_path(@room), method: :post do %>
+                      <i class="fas fa-heart"></i>
+                    <% end %>
+                  <% end %>
+                    <%= @room.favorites.count %>
+                <% else %>
+                <%= link_to 'ログインして投稿者を確認する', new_user_session_path ,class: "button is-success" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <article class="panel is-link">
+          <p class="panel-heading">
+            ￥<%= @room.room_price  %>/日
+          </p>
+          <div class="panel-block">
+            <%= render "reservations/new" %>  
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

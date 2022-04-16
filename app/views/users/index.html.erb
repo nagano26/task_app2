@@ -1,0 +1,89 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        アカウント
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title" >あなたのプロフィール</h1>
+      <div class="columns is-centered">
+            <div class="card">
+                <div class="card-content">
+                    <table class="table">
+                        <tr>
+                            <th>あなたのメールアドレス</th>
+                        <tr>
+                        <tr>
+                            <th><%= @user.email %></th>
+                        </tr>
+                        <tr>
+                            <th>あなたのパスワード</th>
+                        </tr>
+                        <tr>
+                            <th>*******</th>
+                        </tr>
+                        <tr>
+                          <th>紹介文</th>
+                        </tr>
+                        <tr>
+                          <td><%= simple_format @user.profile %></td>
+                        </tr>
+                    <table>
+                </div>
+            </div>
+        <div class="actions">
+          <%= link_to '編集', edit_user_path(@user), class: "button is-success" %>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="title" >過去の投稿欄</div>
+      <div class="count">現在のあなたの投稿数：<%= @user.rooms.count %></div> 
+    <div class="columns is-multiline">
+      <% @user.rooms.each do |room| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <%= link_to room_path(room) do %>
+                  <%= attachment_image_tag room, :room_image, fallback: "no-image.png" %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <%= link_to room_path(room), class: "panel-block" do %>
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    このレシピを見る
+                  <% end %>
+                  <% if @user.id == current_user.id %>
+                    <%= link_to edit_room_path(room), class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      このレシピを編集する
+                    <% end %>
+                    <%= button_to room_path(room), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                      このレシピを削除する
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

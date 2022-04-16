@@ -1,0 +1,49 @@
+
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        部屋登録画面
+      </h1>
+    </div>
+  </div>
+</section>
+
+<%= render "shared/error", obj: @room %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @room do |f| %>
+          <div class="field">
+            <%= f.label :room_name, "部屋の名前", class: "label" %>
+            <%= f.text_field :room_name, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :room_body, "部屋の紹介", class: "label" %>
+            <%= f.text_area :room_body, class: "textarea" %>
+          </div>
+          
+          <div class="field">
+            <%= f.label :room_price, "部屋の料金", class: "label" %>
+            <%= f.text_field :room_price, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :address, "住所", class: "label" %>
+            <%= f.text_field :address, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :room_image, "部屋の写真", class: "label" %>
+            <%= f.attachment_field :room_image, class: "input" %>
+          </div>
+
+          <%= f.submit '投稿', class: "button is-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
