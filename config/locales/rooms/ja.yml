@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      room: ルーム
+    attributes:
+      room:
+        room_name: 部屋の名前
+        room_body: 部屋の紹介文
+        room_price: 部屋の料金
+        address: 住所
+        
+        
