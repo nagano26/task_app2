@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      reservation: 予約
+    attributes:
+      reservation:
+        start_at: チェックイン日
+        end_at: チェックアウト日
+        number_people: 人数
+        
+        

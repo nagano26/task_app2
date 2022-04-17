@@ -15,6 +15,5 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :username
     validates :email
-    validates :profile
   end
 end

@@ -76,3 +76,5 @@ gem "bulma-rails"
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'rails-i18n'
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
